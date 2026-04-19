@@ -11,6 +11,6 @@ class AdminRole(Base):
     email = Column(String, unique=True)
     password = Column(String)
 
-    role = Column(default="admin", nullable=False)
+    role = Column(String, default="admin", nullable=False)
     
     is_active = Column(Boolean, default=True)

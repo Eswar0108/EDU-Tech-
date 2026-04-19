@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Phone, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { getGuideUpcomingCalls,startCall } from "../../../Apiroute";
+import { getGuideUpcomingCalls, startCall, createCallSession } from "../../../Apiroute";
 
 function UpcomingCalls() {
 
@@ -39,7 +39,8 @@ function UpcomingCalls() {
 
   try {
 
-    await startCall(call.id);   // 🔥 IMPORTANT
+    await createCallSession(call.id);
+    await startCall(call.id);
 
     navigate(`/guide-call/${call.id}`);
 

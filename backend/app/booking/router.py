@@ -3,6 +3,7 @@ import razorpay
 from sqlalchemy.orm import Session
 from datetime import datetime, timedelta
 import os
+from pydantic import BaseModel
 
 from app.utils.language import get_message, language_header
 from app.core.database import get_db
@@ -326,7 +327,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
-from models import RefundRequest
+from app.booking.models import RefundRequest
 
 from app.booking.models import Booking
 

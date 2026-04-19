@@ -22,6 +22,39 @@ export const joinVoiceCall = async (tokenData) => {
 
     console.log("Joining channel:", channel);
 
+    // listen remote audio BEFORE joining
+    client.removeAllListeners("user-published");
+    client.removeAllListeners("user-unpublished");
+
+    client.on(
+      "user-published",
+      async (user, mediaType) => {
+
+        console.log("Remote user published:", user.uid, mediaType);
+
+        await client.subscribe(
+          user,
+          mediaType
+        );
+
+        if (mediaType === "audio") {
+
+          console.log("Remote audio received, playing...");
+
+          user.audioTrack.play();
+
+        }
+
+      }
+    );
+
+    client.on(
+      "user-unpublished",
+      (user, mediaType) => {
+        console.log("Remote user unpublished:", user.uid, mediaType);
+      }
+    );
+
     // join channel
     await client.join(
       appId,
@@ -40,28 +73,6 @@ export const joinVoiceCall = async (tokenData) => {
     await client.publish([localAudioTrack]);
 
     console.log("Mic published");
-
-
-    // listen remote audio
-    client.on(
-      "user-published",
-      async (user, mediaType) => {
-
-        await client.subscribe(
-          user,
-          mediaType
-        );
-
-        if (mediaType === "audio") {
-
-          console.log("Remote audio received");
-
-          user.audioTrack.play();
-
-        }
-
-      }
-    );
 
   } catch (error) {
 

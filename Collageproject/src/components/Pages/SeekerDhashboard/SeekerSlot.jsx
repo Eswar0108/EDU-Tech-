@@ -66,7 +66,7 @@ function SlotSelection() {
 
     const filtered = allSlots.filter((slot) => {
 
-      const slotDate = slot.start_time.split("T")[0];
+      const slotDate = slot.start_time.split(/[T ]/)[0];
 
       return slotDate === selectedDate;
 
@@ -198,12 +198,12 @@ function SlotSelection() {
                 {/* show date + time */}
 
                 <div className="text-sm text-gray-500">
-                  {slot.start_time.split("T")[0]}
+                  {slot.start_time.split(/[T ]/)[0]}
                 </div>
 
-                {slot.start_time.split("T")[1].slice(0,5)}
+                {(slot.start_time.split(/[T ]/)[1] || "").slice(0,5)}
                 {" - "}
-                {slot.end_time.split("T")[1].slice(0,5)}
+                {(slot.end_time.split(/[T ]/)[1] || "").slice(0,5)}
 
               </button>
 

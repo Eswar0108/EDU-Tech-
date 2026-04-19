@@ -1,11 +1,14 @@
-const BASEURL = "http://127.0.0.1:8000";
+const getWsUrl = (path) => {
+  const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+  return `${proto}//${window.location.host}${path}`;
+};
 
 export const connectIncomingCallSocket = (userId, onMessage) => {
 
   if (!userId) return null;
 
   const socket = new WebSocket(
-    `${BASEURL.replace("http", "ws")}/call/ws/call/${userId}`
+    getWsUrl(`/call/ws/call/${userId}`)
   );
 
   socket.onopen = () =>

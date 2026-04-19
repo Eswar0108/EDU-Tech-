@@ -1,7 +1,11 @@
 import axios from "axios";
 
+const computedBaseUrl =
+  import.meta.env.VITE_API_BASE_URL ||
+  "/api";
+
 const axiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: computedBaseUrl,
 });
 
 axiosInstance.interceptors.request.use((config) => {

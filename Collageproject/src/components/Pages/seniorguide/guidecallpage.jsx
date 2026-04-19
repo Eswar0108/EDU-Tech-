@@ -30,20 +30,26 @@ function GuideCallPage() {
 
   const joinCall = async () => {
 
-    await navigator.mediaDevices.getUserMedia({
-      audio: true
-    });
+    try {
 
-    await createCallSession(booking_id);
+      await createCallSession(booking_id);
 
-    const tokenData =
-      await getCallToken(booking_id);
+      const tokenData =
+        await getCallToken(booking_id);
 
-    await joinVoiceCall(tokenData);
+      await joinVoiceCall(tokenData);
 
-    ringtoneRef.current.pause();
+      ringtoneRef.current?.pause();
 
-    setJoined(true);
+      setJoined(true);
+
+    } catch (error) {
+
+      console.error("Join call failed:", error);
+
+      alert("Call start failed");
+
+    }
 
   };
 

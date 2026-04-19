@@ -79,7 +79,7 @@ useEffect(() => {
           setTimeout(() => {
 
             window.location.href =
-              `/seeker-call/${data.booking_id}`;
+              `/call/${data.booking_id}`;
 
           }, 1000);
 
@@ -203,7 +203,7 @@ const handleContinuePayment = async (bookingId) => {
 
         }
 
-       window.location.href = `/seeker-call/${bookingId}`;
+       window.location.href = `/call/${bookingId}`;
 
       } else {
 

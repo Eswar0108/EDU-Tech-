@@ -145,10 +145,10 @@ function BookingPage() {
   // ✅ Extract date & time
 
   const date =
-    timeSlot.split("T")[0];
+    timeSlot.split(/[T ]/)[0];
 
   const time =
-    timeSlot.split("T")[1].slice(0, 5);
+    (timeSlot.split(/[T ]/)[1] || "").slice(0, 5);
 
 
   return (

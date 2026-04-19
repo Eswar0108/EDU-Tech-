@@ -35,13 +35,8 @@ function SeekerCallPage() {
 
       console.log("Joining booking:", booking_id);
 
-      // mic permission
-
-      await navigator.mediaDevices.getUserMedia({
-        audio: true
-      });
-
-      
+      // ensure session exists
+      await createCallSession(booking_id);
 
       // get agora token
 

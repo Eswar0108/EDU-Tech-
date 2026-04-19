@@ -24,7 +24,7 @@ export const initNotificationSocketSafe = (onMessage) => {
   try {
 
     notificationSocket = new WebSocket(
-      `ws://localhost:8000/ws/notifications?token=${token}`
+      `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/notifications/ws/notifications?token=${token}`
     );
 
     notificationSocket.onopen = () => {

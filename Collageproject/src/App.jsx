@@ -36,6 +36,7 @@ import UpcomingCalls from "./components/Pages/seniorguide/Upcomingcalls";
 import TestPendingApproval from "./components/Pages/seniorguide/Testpending";
 import TestResult from "./components/Pages/seniorguide/Testresult";
 import Confirmation from "./components/Pages/SeekerDhashboard/Confirmation";
+import RefundRequest from "./components/Pages/SeekerDhashboard/refundrequest";
 import ViewGuide from "./components/Home/ViewGuides";
 import AboutUs from "./components/Home/About";
 import FAQ from "./components/Home/FAQ";
@@ -46,7 +47,7 @@ import RefundPolicy from "./components/Home/Help";
 import MyProfile from "./components/Home/Myprofie";
 
 import SeniorGuideProfile from "./components/Pages/seniorguide/Seniorprofile";
-import SeekerCallPage from "./components/Pages/SeekerDhashboard/SeekerCallPage";
+import SeekerCallPage from "./components/Pages/SeekerDhashboard/seekercallpage";
 
 import AdminDashboard from "./components/Pages/Admin/AdminDashboard";
 import ProtectedAdmin from "./components/Pages/Admin/ProtectAdmin";
@@ -114,7 +115,7 @@ function App() {
           <Route path="/guide-call/:booking_id" element={<GuideCallPage />}/>
 
   {/* SEEKER CALL PAGE */}
-        <Route path="/call/:bookingId" element={<SeekerCallPage />} />
+        <Route path="/call/:booking_id" element={<SeekerCallPage />} />
         <Route path="/test-result" element={<TestResult />} />
         
         {/* ADMIN */}

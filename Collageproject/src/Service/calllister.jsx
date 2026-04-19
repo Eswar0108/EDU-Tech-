@@ -1,4 +1,7 @@
-const BASEURL = "http://127.0.0.1:8000";
+const getWsUrl = (path) => {
+  const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+  return `${proto}//${window.location.host}${path}`;
+};
 
 export const connectIncomingCallSocket = (
   userId,
@@ -14,7 +17,7 @@ export const connectIncomingCallSocket = (
   }
 
   const wsUrl =
-    `${BASEURL.replace("http", "ws")}/call/ws/call/${userId}`;
+    getWsUrl(`/call/ws/call/${userId}`);
 
   console.log("Connecting socket:", wsUrl);
 

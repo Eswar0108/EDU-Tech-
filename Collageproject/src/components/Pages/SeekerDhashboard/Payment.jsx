@@ -175,10 +175,10 @@ function Payment() {
 
 
   const date =
-    booking.time_slot.split("T")[0];
+    booking.time_slot.split(/[T ]/)[0];
 
   const time =
-    booking.time_slot.split("T")[1].slice(0,5);
+    (booking.time_slot.split(/[T ]/)[1] || "").slice(0, 5);
 
 
   return (

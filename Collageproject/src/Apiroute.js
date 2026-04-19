@@ -265,11 +265,25 @@ export const getBookingStatus = (bookingId) =>
   axiosInstance.get(`/booking/status/${bookingId}`);
 
 
+// ================= REFUND REQUEST (SEEKER) =================
+
+// CREATE REFUND REQUEST
+export const createRefundRequest = (bookingId, reason) =>
+  axiosInstance.post(`/booking/refund/request/${bookingId}`, {
+    reason,
+  });
+
+// GET REFUND STATUS
+export const getRefundStatus = (bookingId) =>
+  axiosInstance.get(`/booking/refund/status/${bookingId}`);
+
+
 
 
 export const connectCallSocket = (userId, onMessage) => {
+  const wsProto = window.location.protocol === "https:" ? "wss" : "ws";
   const socket = new WebSocket(
-    `ws://localhost:8000/ws/call/${userId}`
+    `${wsProto}://${window.location.host}/call/ws/call/${userId}`
   );
 
   socket.onopen = () => {
@@ -415,7 +429,8 @@ export const updateBranch = (branchId, data) =>
 
 
 export const connectNotificationSocket = (onMessage) => {
-  const socket = new WebSocket("ws://localhost:8000/ws/notifications");
+  const wsProto = window.location.protocol === "https:" ? "wss" : "ws";
+  const socket = new WebSocket(`${wsProto}://${window.location.host}/notifications/ws/notifications`);
 
   socket.onopen = () => {
     console.log("Notification socket connected");
